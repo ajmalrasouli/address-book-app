@@ -1,41 +1,48 @@
-# SQLite Address Book
+# Modern Address Book
 
-Manage your contacts effortlessly with this user-friendly Python GUI application. Powered by SQLite, it offers a seamless experience for adding, viewing, editing, and deleting contacts. Import and export contacts conveniently in CSV format. Stay organized with group categorization and an intuitive interface.
+A sleek, modern contact management application built with Python and PyQt6. Store and organize your contacts with ease using this intuitive and responsive desktop application.
 
-!![img.png](screenshots/img.png)
+![Modern Address Book Interface](screenshots/contact_details.png)
 
-## Features
+## ✨ Features
 
-- **Add Contacts**: Easily add new contacts with their name, phone number, and group.
-- **View Contacts**: Browse through your contacts with a tree view display.
-- **Edit Contacts**: Update contact information such as phone number or group.
-- **Delete Contacts**: Remove unwanted contacts with a click.
-- **Export to CSV**: Save your contacts to a CSV file for backup or sharing.
-- **Import from CSV**: Quickly import contacts from a CSV file.
+- **Modern UI**: Clean, responsive interface built with PyQt6
+- **Contact Management**:
+  - Add, edit, and delete contacts
+  - Store multiple contact details (name, phone, email, group, notes)
+  - Real-time search and filtering
+  - Contact grouping and categorization
+- **User Experience**:
+  - Two-panel layout for easy navigation
+  - Real-time contact details preview
+  - Intuitive interface with clear feedback
+  - Sample contacts included for quick start
+- **Data Persistence**:
+  - SQLite database for reliable storage
+  - Automatic data saving
+  - Sample data initialization
 
-## Installation
+## 🚀 Installation
 
-1. Clone the repository:
+1. **Prerequisites**:
+   - Python 3.8 or higher
+   - pip (Python package manager)
+
+2. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/address-book.git
+   cd address-book
+   ```
 
-1. Navigate to the project directory:
-```bash
-cd address-book
-```
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-2. Install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-
-3. Run the application:
-
-```bash
-python address_book_gui.py
-```
+4. **Run the application**:
+   ```bash
+   python modern_address_book.py
+   ```
 
 ### **Usage**
 
@@ -47,7 +54,17 @@ python address_book_gui.py
 * **Import from CSV**: Click "Import from CSV" to add contacts from a CSV file.
 
 
-### **Screenshots**
+## 📸 Screenshots
+
+![Contact List View](screenshots/contact_list.png)
+*Contact list with search functionality*
+
+![Edit Contact](screenshots/edit_contact.png)
+*Editing contact details*
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ![img_1.png](screenshots/img_1.png)
 
