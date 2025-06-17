@@ -337,17 +337,38 @@ class ModernAddressBook(QMainWindow):
         self.load_contacts(filter_text)
     
     def add_contact(self):
-        dialog = ContactDialog()
-        if dialog.exec() == QDialog.DialogCode.Accepted:
-            data = dialog.get_contact_data()
-            cursor = self.conn.cursor()
-            cursor.execute("""
-                INSERT INTO contacts (name, phone, email, group_name, notes)
-                VALUES (?, ?, ?, ?, ?)
-            """, (data['name'], data['phone'], data['email'], data['group'], data['notes']))
-            self.conn.commit()
-            self.load_contacts()
-            self.statusBar().showMessage("Contact added successfully", 3000)
+        try:
+            # Ensure database connection is open
+            if not hasattr(self, 'conn') or not self.conn:
+                self.init_database()
+                
+            dialog = ContactDialog()
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                data = dialog.get_contact_data()
+                
+                # Validate required fields
+                if not data['name'].strip():
+                    QMessageBox.warning(self, "Validation Error", "Name is required!")
+                    return
+                    
+                cursor = self.conn.cursor()
+                cursor.execute("""
+                    INSERT INTO contacts (name, phone, email, group_name, notes)
+                    VALUES (?, ?, ?, ?, ?)
+                """, (
+                    data['name'].strip(),
+                    data['phone'].strip(),
+                    data['email'].strip(),
+                    data['group'].strip(),
+                    data['notes'].strip()
+                ))
+                self.conn.commit()
+                self.load_contacts()
+                self.statusBar().showMessage("Contact added successfully", 3000)
+                
+        except sqlite3.Error as e:
+            QMessageBox.critical(self, "Database Error", f"Failed to add contact: {str(e)}")
+            self.statusBar().showMessage("Error adding contact", 3000)
     
     def edit_contact(self):
         current_item = self.contact_list.currentItem()
